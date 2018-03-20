@@ -13,20 +13,22 @@ var arrayWatchable = (function(){
             }
         })
     })
-    var watcherProto = Object.create(observedArrayProto)
-    Object.defineProperty(observedArrayProto, "watch", {
+    !observedArrayProto.watch && Object.defineProperty(observedArrayProto, "watch", {
         configurable: false,
         enumerable: false,
         value: function(callback){
             this.watchers.push(callback)
         }
     })
-    Object.defineProperty(observedArrayProto, "watchers", {
-        configurable: false,
-        enumerable: false,
-        value: []
-    })
     return function(arr){
+        // each object needs its own set of watch and watchables 
+        var watcherProto = Object.create(observedArrayProto)
+        
+        Object.defineProperty(watcherProto, "watchers", {
+            configurable: false,
+            enumerable: false,
+            value: []
+        })
         Object.setPrototypeOf(arr, watcherProto)
         return arr
     }
