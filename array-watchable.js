@@ -5,12 +5,29 @@ var arrayWatchable = (function(){
             configurable: false,
             enumerable: false,
             value: function(){
-                console.log(prop, "called")
-                return Array.prototype[prop].apply(this, Array.prototype.slice.call(arguments))
+                var args = Array.prototype.slice.call(arguments)
+                this.watchers && this.watchers.forEach(function(cb){
+                    cb(prop, args)
+                })
+                return Array.prototype[prop].apply(this, args)
             }
         })
     })
+    var watcherProto = Object.create(observedArrayProto)
+    Object.defineProperty(observedArrayProto, "watch", {
+        configurable: false,
+        enumerable: false,
+        value: function(callback){
+            this.watchers.push(callback)
+        }
+    })
+    Object.defineProperty(observedArrayProto, "watchers", {
+        configurable: false,
+        enumerable: false,
+        value: []
+    })
     return function(arr){
         Object.setPrototypeOf(arr, observedArrayProto)
+        return arr
     }
 })()
