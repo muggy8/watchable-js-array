@@ -27,7 +27,7 @@ var arrayWatchable = (function(){
         value: []
     })
     return function(arr){
-        Object.setPrototypeOf(arr, observedArrayProto)
+        Object.setPrototypeOf(arr, watcherProto)
         return arr
     }
 })()
