@@ -48,4 +48,4 @@ var watchableProtoFn = (function(){
         return obj
     }
 })()
-module !== undefined && module.exports = watchableProtoFn
+module !== undefined && (module.exports = watchableProtoFn)
