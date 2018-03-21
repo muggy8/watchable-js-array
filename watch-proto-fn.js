@@ -12,7 +12,7 @@ var watchableProtoFn = (function(){
                         var args = Array.prototype.slice.call(arguments)
                         if (this.watchers){
                             this.watchers[prop] && this.watchers[prop].concat(this.watchers["*"] || []).forEach(function(cb){
-                                cb(args)
+                                cb(args, prop)
                             })
                         }
                         
