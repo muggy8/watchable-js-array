@@ -1,0 +1,26 @@
+{
+  "name": "watchable-proto-functions",
+  "version": "1.0.0",
+  "description": "makes functions in the prototype of any object (including native objects) watchable and will call callbacks when it's called",
+  "main": "watchable-proto-fn.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muggy8/watchable-proto-functions.git"
+  },
+  "keywords": [
+    "events",
+    "watchable",
+    "observeable",
+    "inheritance",
+    "prototype"
+  ],
+  "author": "Muggy Ate",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/muggy8/watchable-proto-functions/issues"
+  },
+  "homepage": "https://github.com/muggy8/watchable-proto-functions#readme"
+}
