@@ -10,9 +10,12 @@ var watchableProtoFn = (function(){
                     enumerable: false,
                     value: function(){
                         var args = Array.prototype.slice.call(arguments)
-                        this.watchers && this.watchers[prop] && this.watchers[prop].forEach(function(cb){
-                            cb(args)
-                        })
+                        if (this.watchers){
+                            this.watchers[prop] && this.watchers[prop].concat(this.watchers["*"] || []).forEach(function(cb){
+                                cb(args)
+                            })
+                        }
+                        
                         return calledProto[prop].apply(this, args)
                     }
                 })
